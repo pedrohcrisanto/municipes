@@ -1,0 +1,85 @@
+<div class="container text-center">
+    <%= form_with(model: @citizen, local: true) do |f| %>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <%= f.label :full_name %><br />
+                <%= f.text_field :full_name , class: "form-control" %>
+            </div>
+
+            <div class="form-group col-md-6">
+                <%= f.label :cpf %><br />
+                <%= f.text_field :cpf , class: "form-control" %>
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <%= f.label :birthdate %><br />
+                <%= f.date_field :birthdate , class: "form-control" %>
+            </div>
+
+            <div class="form-group col-md-6">
+                <%= f.label :phone %><br />
+                <%= f.text_field :phone , class: "form-control" %>
+            </div>
+
+            <div class="form-group col-md-6">
+                <%= f.label :email %><br />
+                <%= f.email_field :email, autofocus: true, autocomplete: "email" , class: "form-control" %>
+            </div>
+        </div>
+        
+        <div class="container text-center" style="margin-bottom: 2%;margin-top: 2%;">
+            <%= form_with(url: "/data/fill", local: true, method: "get") do %>
+                <%= label_tag(:cep_service, "Digite o seu CEP:") %>
+                <%= text_field_tag(:cep_service) %>
+                <%= submit_tag "Preencher dados", class: "btn btn-primary" %>
+            <% end %>
+        </div>
+
+        <%= f.fields_for :addresses do |address_form| %>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <%= address_form.label :zip %>
+                    <%= address_form.text_field :zip , class: "form-control" %>
+                </div>
+
+                <div class="form-group col-md-6">
+                    <%= address_form.label :ibge_code %>
+                    <%= address_form.text_field :ibge_code , class: "form-control" %>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <%= address_form.label :street %>
+                <%= address_form.text_field :street , class: "form-control" %>
+            </div>
+
+            <div class="form-group">
+                <%= address_form.label :complement %>
+                <%= address_form.text_field :complement , class: "form-control" %>
+            </div>
+            
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <%= address_form.label :neighborhood %>
+                    <%= address_form.text_field :neighborhood , class: "form-control" %>
+                </div>
+
+                <div class="form-group col-md-4">
+                    <%= address_form.label :city %>
+                    <%= address_form.text_field :city , class: "form-control" %>
+                </div>
+
+                <div class="form-group col-md-2">
+                    <%= address_form.label :uf %>
+                    <%= address_form.text_field :uf , class: "form-control" %>
+                </div>
+            </div>
+        <% end %>
+
+        <div class="form-group col-md-6">
+            <%= f.submit "Cadastrar", class: "btn btn-success" %>
+        </div>
+    <% end %>
+</div>
