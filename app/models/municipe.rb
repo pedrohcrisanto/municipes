@@ -1,3 +1,3 @@
 class Municipe < ApplicationRecord
-    has_many :citizen
+    has_many :citizens
 end
