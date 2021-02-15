@@ -5,6 +5,7 @@ class CreateMunicipes < ActiveRecord::Migration[6.0]
       t.string :cpf
       t.date :birthdate
       t.string :phone
+      t.boolean :status
 
       t.timestamps
     end
